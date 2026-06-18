@@ -11,17 +11,17 @@
 
     <!-- Open Graph / Facebook / WhatsApp -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://kagum-hotel.com/card/christina-rhidsy-m/"> <!-- GANTI DENGAN URL ASLI ANDA -->
+    <meta property="og:url" content="https://idcard-sales.vercel.app/"> <!-- GANTI DENGAN URL ASLI ANDA -->
     <meta property="og:title" content="Christina Rhidsy M - Executive Digital Card">
     <meta property="og:description" content="Lihat dan simpan kontak Christina Rhidsy M, Corp. GM Sales & Marketing di KAGUM Hotels.">
-    <meta property="og:image" content="https://kagum-hotel.com/card/christina-rhidsy-m/preview-card.png"> <!-- GANTI DENGAN URL GAMBAR PRATINJAU ANDA -->
+    <meta property="og:image" content="https://idcard-sales.vercel.app/preview-card.png"> <!-- GANTI DENGAN URL GAMBAR PRATINJAU ANDA -->
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://kagum-hotel.com/card/christina-rhidsy-m/"> <!-- GANTI DENGAN URL ASLI ANDA -->
+    <meta property="twitter:url" content="https://idcard-sales.vercel.app/"> <!-- GANTI DENGAN URL ASLI ANDA -->
     <meta property="twitter:title" content="Christina Rhidsy M - Executive Digital Card">
     <meta property="twitter:description" content="Lihat dan simpan kontak Christina Rhidsy M, Corp. GM Sales & Marketing di KAGUM Hotels.">
-    <meta property="twitter:image" content="https://kagum-hotel.com/card/christina-rhidsy-m/preview-card.png"> <!-- GANTI DENGAN URL GAMBAR PRATINJAU ANDA -->
+    <meta property="twitter:image" content="https://idcard-sales.vercel.app/preview-card.png"> <!-- GANTI DENGAN URL GAMBAR PRATINJAU ANDA -->
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -308,9 +308,7 @@
 
             // --- Constants ---
             const SHARE_DEFAULTS = {
-                url: 'https://kagum-hotel.com/card/christina-rhidsy-m/',
-                title: 'Christina Rhidsy M - Digital Card',
-                text: 'Lihat kartu nama digital Christina Rhidsy M, Corp. GM Sales & Marketing di KAGUM Hotels.'
+                url: 'https://idcard-sales.vercel.app/'
             };
 
             const VCF_DATA = [
@@ -406,37 +404,11 @@
                 }
 
                 try {
-                    const originalTransform = card.style.transform;
-                    card.style.transition = 'none';
-                    card.style.transform = 'none';
-                    
-                    await new Promise(resolve => requestAnimationFrame(resolve));
-
-                    const canvas = await html2canvas(card, {
-                        useCORS: true,
-                        backgroundColor: null,
-                        scale: window.devicePixelRatio || 2,
-                    });
-
-                    card.style.transform = originalTransform;
-                    card.style.transition = '';
-
-                    canvas.toBlob(async (blob) => {
-                        if (!blob) throw new Error("Failed to convert canvas to blob");
-                        
-                        const file = new File([blob], 'Christina_Rhidsy_M_Card.png', { type: 'image/png' });
-                        const shareData = { ...SHARE_DEFAULTS, files: [file] };
-
-                        if (navigator.canShare && navigator.canShare(shareData)) {
-                            await navigator.share(shareData);
-                        } else {
-                            await navigator.share(SHARE_DEFAULTS);
-                        }
-                    }, 'image/png');
-
-                } catch (err) {
-                    console.error('Failed to capture or share image:', err);
+                    // Share only the link, title, and text as requested.
                     await navigator.share(SHARE_DEFAULTS);
+                } catch (err) {
+                    console.error('Failed to share:', err);
+                    showToast('Gagal membagikan kartu.', 'error');
                 }
             };
 
